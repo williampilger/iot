@@ -46,3 +46,17 @@ Bom, pode ser necessário instalara a interface gráfica após você já ter con
 
 > reboot
 
+## Acessando Interface gráfica via VNC
+
+Caso você não tenha instalado o vnc server, instale ele usando (lembrando que é indicado dar um `sudo apt-get update`e `sudo apt-get upgrade`antes de iniciar isso):
+
+> sudo apt-get install realvnc-vnc-server
+
+Este serviço já é instalado por padrão na Raspberry Pi.
+
+Acesse as configurações da rasp usando
+
+> sudo raspi-config
+
+E ative o CNV Server no menu **Interface Options**. Confirme, salve e saia. (Use `TAB`para pular entre as opções)
+
