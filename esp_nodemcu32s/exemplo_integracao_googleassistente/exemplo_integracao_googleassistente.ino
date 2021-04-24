@@ -3,9 +3,7 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 #include <fauxmoESP.h>
-
-const char* ssid = "TiagoPilger";
-const char* password = "87898183";
+#include "credenciais.h"
 
 fauxmoESP fauxmo;
 
