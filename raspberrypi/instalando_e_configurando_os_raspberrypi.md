@@ -10,5 +10,10 @@ Se estiver usando linux, poderá instalá-la usando:
 
 ## Baixando imagem e criando mídia manualmente (standallone)
 
-Baixe a imagem de sistema desejada na [página de downloads](https://www.raspberrypi.org/software/operating-systems/)
-Baixe também o Balena Etcher, disponível no [site oficial](https://www.balena.io/etcher/?)
+- Baixe a imagem de sistema desejada na [página de downloads](https://www.raspberrypi.org/software/operating-systems/)
+- Baixe também o Balena Etcher, disponível no [site oficial](https://www.balena.io/etcher/?)
+- Extraia a imagem que acabou de baixar;
+- Execute o Balena Etcher;
+- Selecione **Flash from file** e navegue até a ISO que você extraiu;
+- Insira e selecione o cartão SD que deseja utilizar (aconselhamos o uso de SD classe 10);
+- Clique em **Flash** e digite sua senha de administrador, caso necessário.
