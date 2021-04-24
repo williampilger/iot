@@ -2,9 +2,17 @@
 #include <ESPmDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
+#include <fauxmoESP.h>
 
-const char* ssid = "Tiago Pilger";
+const char* ssid = "TiagoPilger";
 const char* password = "87898183";
+
+fauxmoESP fauxmo;
+
+#define PIN_LAMP 14
+#define PIN_LED 2
+
+#define ID_LAMP "Lâmpada"
 
 void setup() {
   Serial.begin(115200);
@@ -16,7 +24,10 @@ void setup() {
     delay(5000);
     ESP.restart();
   }
-  pinMode(2, OUTPUT);
+  pinMode(PIN_LAMP, OUTPUT);
+  pinMode(PIN_LED, OUTPUT);
+  digitalWrite(PIN_LAMP, LOW);
+  digitalWrite(PIN_LED, LOW);
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
 
@@ -29,7 +40,30 @@ void setup() {
   // Password can be set with it's md5 value as well
   // MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
   // ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
+  
+  //wifiSetup();
+  fauxmo.createServer(true); // not needed, this is the default value
+  fauxmo.setPort(80); // This is required for gen3 devices
+  fauxmo.enable(true);
+  fauxmo.addDevice(ID_LAMP);
+  fauxmo.onSetState([](unsigned char device_id, const char * device_name, bool state, unsigned char value) {
+        
+        // Callback when a command from Alexa is received. 
+        // You can use device_id or device_name to choose the element to perform an action onto (relay, LED,...)
+        // State is a boolean (ON/OFF) and value a number from 0 to 255 (if you say "set kitchen light to 50%" you will receive a 128 here).
+        // Just remember not to delay too much here, this is a callback, exit as soon as possible.
+        // If you have to do something more involved here set a flag and process it in your main loop.
+        
+        Serial.printf("[MAIN] Device #%d (%s) state: %s value: %d\n", device_id, device_name, state ? "ON" : "OFF", value);
 
+        // Checking for device_id is simpler if you are certain about the order they are loaded and it does not change.
+        // Otherwise comparing the device_name is safer.
+
+        if (strcmp(device_name, ID_LAMP)==0) {
+            digitalWrite(PIN_LAMP, state ? HIGH : LOW);
+        }
+  });
+  
   ArduinoOTA
     .onStart([]() {
       String type;
@@ -65,9 +99,12 @@ void setup() {
 
 void loop() {
   ArduinoOTA.handle();
-  digitalWrite(2, HIGH);
-  delay(500);
-  digitalWrite(2, LOW);
-  delay(500);
-  
+  fauxmo.handle();
+  static unsigned long last = millis();
+  if (millis() - last > 5000) {
+      digitalWrite(2, HIGH);
+      last = millis();
+      Serial.printf("[MAIN] Free heap: %d bytes\n", ESP.getFreeHeap());
+      digitalWrite(2, LOW);
+  }
 }
