@@ -17,3 +17,7 @@ Se estiver usando linux, poderá instalá-la usando:
 - Selecione **Flash from file** e navegue até a ISO que você extraiu;
 - Insira e selecione o cartão SD que deseja utilizar (aconselhamos o uso de SD classe 10);
 - Clique em **Flash** e digite sua senha de administrador, caso necessário.
+
+## Ativando o servidor SSH
+
+Você pode ativá-lo sem ter acesso à area de trabalho da Raspberry criando um arquivo vazio na partição **boot** com o nome de **ssh**.
