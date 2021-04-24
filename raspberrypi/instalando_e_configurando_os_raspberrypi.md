@@ -21,3 +21,14 @@ Se estiver usando linux, poderá instalá-la usando:
 ## Ativando o servidor SSH
 
 Você pode ativá-lo sem ter acesso à area de trabalho da Raspberry criando um arquivo vazio na partição **boot** com o nome de **ssh**.
+
+## Instalando interface gráfica na versão lite
+
+Bom, pode ser necessário instalara a interface gráfica após você já ter configurado a versão lite do OS. Para isso use:
+
+> sudo apt install xserver-xorg
+
+> sudo apt install raspberry-ui-mods
+
+> reboot
+
