@@ -60,3 +60,4 @@ Acesse as configurações da rasp usando
 
 E ative o CNV Server no menu **Interface Options**. Confirme, salve e saia. (Use `TAB`para pular entre as opções)
 
+Acesse o [site do RealVNC](https://www.realvnc.com/pt/connect/download/viewer/) no dispositivo que desejas utilizar para fazer o acesso, e faça o download da aplicação para seu PC. (OBS.: Remmina não apresentou funcionamento correto para esta conexão VNC, com falhas de segurança)
