@@ -40,7 +40,7 @@ except:
     else:
         print("SISTEMA OPERACIONAL DETECTADO: LINUX")
         print("INSTALANDO BIBLIOTECA PYSINRIC. CONEXÃO À INTERNET NECESSÁRIA")
-        os.system("pip3 install pysinric")
+        os.system("pip3 install sinricpro")
         restart_program()
 try:
     from credenciais_sinric import appKey, deviceId1, secretKey, deviceIdArr
