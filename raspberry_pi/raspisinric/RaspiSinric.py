@@ -73,7 +73,8 @@ def Events():
 
 
 def onPowerState(did, state):
-    # Alexa, turn ON/OFF Device
+    # AQUI O CODIGO PARA ALTERAR ESTADOS DOS EQUIPAMENTOS
+    
     print(did, state)
     return True, state
 
