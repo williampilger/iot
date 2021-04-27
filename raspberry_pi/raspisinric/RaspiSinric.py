@@ -46,27 +46,23 @@ except:
         os.system("pip3 install sinricpro")
         restart_program()
 
-try:
-    with open("credenciais_sinric.txt", "rt") as arquivo:
-        x = 0
-        deviceIdArr = []
-        for linha in arquivo:
-            if(x == 0):
-                appKey = linha[:len(linha)-1]#remove \n
-            elif(x == 1):
-                secretKey = linha[:len(linha)-1]#remove \n
-            else:
-                tamlin = len(linha)
-                if(linha[tamlin] == "\n"):
-                    tamlin -= 1#remove \n se tiver
-                deviceIdArr.append(linha[:tamlin])
-            x += 1
-        if(x < 2):
-            print("FALHA: NÃO FOI INFORMADO NENHUM ID DE DISPOSITIVO")
-            sair(1)
-except:
-    print("FALHA AO CARREGAR CREDENCIAIS SINRIC")
-    sair(1)
+with open("credenciais_sinric.txt", "rt") as arquivo:
+    x = 0
+    deviceIdArr = []
+    for linha in arquivo:
+        if(x == 0):
+            appKey = linha[:len(linha)-2]#remove \n
+        elif(x == 1):
+            secretKey = linha[:len(linha)-2]#remove \n
+        else:
+            tamlin = len(linha)
+            if(linha[tamlin-1] == "\n"):
+                tamlin -= 1#remove \n se tiver
+            deviceIdArr.append(linha[:tamlin]-1)
+        x += 1
+    if(x < 2):
+        print("FALHA AO CARREGAR CREDENCIAIS SINRIC")
+        sair(1)
 
 def Events():
     while True:
