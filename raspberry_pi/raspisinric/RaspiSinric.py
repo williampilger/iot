@@ -51,14 +51,14 @@ with open("credenciais_sinric.txt", "rt") as arquivo:
     deviceIdArr = []
     for linha in arquivo:
         if(x == 0):
-            appKey = linha[:len(linha)-2]#remove \n
+            appKey = linha[:len(linha)-1]#remove \n
         elif(x == 1):
-            secretKey = linha[:len(linha)-2]#remove \n
+            secretKey = linha[:len(linha)-1]#remove \n
         else:
             tamlin = len(linha)
             if(linha[tamlin-1] == "\n"):
                 tamlin -= 1#remove \n se tiver
-            deviceIdArr.append(linha[:tamlin-1])
+            deviceIdArr.append(linha[:tamlin])
         x += 1
     if(x < 2):
         print("FALHA AO CARREGAR CREDENCIAIS SINRIC")
