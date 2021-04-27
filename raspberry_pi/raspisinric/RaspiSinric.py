@@ -7,8 +7,8 @@ def sair(erro):
         print("Programa finalizado")
         quit()
     elif(erro == 1):#sair com pausa
-        print("Programa finalizado")
-        os.system("pause")
+        print("Programa finalizado\n\nPressione ENTER para encerrar.")
+        input()
         quit()
 
 def check_net(url): #testar conexão com internet
