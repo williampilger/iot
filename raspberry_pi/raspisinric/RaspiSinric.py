@@ -58,7 +58,7 @@ with open("credenciais_sinric.txt", "rt") as arquivo:
             tamlin = len(linha)
             if(linha[tamlin-1] == "\n"):
                 tamlin -= 1#remove \n se tiver
-            deviceIdArr.append(linha[:tamlin]-1)
+            deviceIdArr.append(linha[:tamlin-1])
         x += 1
     if(x < 2):
         print("FALHA AO CARREGAR CREDENCIAIS SINRIC")
