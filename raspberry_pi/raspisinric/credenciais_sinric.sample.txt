@@ -1,0 +1,6 @@
+app_key_aqui
+secret_key_aqui
+device_Id_1
+device_Id_2
+device_Id_3
+device_Id_N

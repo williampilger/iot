@@ -45,10 +45,27 @@ except:
         print("INSTALANDO BIBLIOTECA PYSINRIC. CONEXÃO À INTERNET NECESSÁRIA")
         os.system("pip3 install sinricpro")
         restart_program()
+
 try:
-    from credenciais_sinric import appKey, deviceId1, secretKey, deviceIdArr
+    with open("credenciais_sinric.txt", "rt") as arquivo:
+        x = 0
+        deviceIdArr = []
+        for linha in arquivo:
+            if(x == 0):
+                appKey = linha[:len(linha)-1]#remove \n
+            elif(x == 1):
+                secretKey = linha[:len(linha)-1]#remove \n
+            else:
+                tamlin = len(linha)
+                if(linha[tamlin] == "\n"):
+                    tamlin -= 1#remove \n se tiver
+                deviceIdArr.append(linha[:tamlin])
+            x += 1
+        if(x < 2):
+            print("FALHA: NÃO FOI INFORMADO NENHUM ID DE DISPOSITIVO")
+            sair(1)
 except:
-    print("ARQUIVO COM CREDENCIAIS NÃO ENCONTRADO.")
+    print("FALHA AO CARREGAR CREDENCIAIS SINRIC")
     sair(1)
 
 def Events():
