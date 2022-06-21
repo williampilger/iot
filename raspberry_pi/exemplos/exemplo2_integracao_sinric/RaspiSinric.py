@@ -18,8 +18,9 @@ if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     for device in deviceArr:
         if(device['Type'] == 'switch'):
-            client = SinricPro(appKey, [device['ID']], sd.switch_callbacks, enable_log=True, restore_states=False, secretKey=secretKey)
-            loop.run_forever(client.connect())
+            callbacks = sd.switch_callbacks
+            client = SinricPro(appKey, [device['ID']], callbacks, enable_log=True, restore_states=False, secretKey=secretKey)
+            loop.run_until_complete(client.connect())
         else:
             print("TIPO DE DISPOSITIVO INVÁLIDO.")
 
